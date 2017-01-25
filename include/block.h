@@ -5,13 +5,14 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 19:55:54 2017 bougon_p
-** Last update Wed Jan 25 20:13:05 2017 bougon_p
+** Last update Wed Jan 25 21:29:00 2017 bougon_p
 */
 
 #ifndef BLOCK_H_
 # define BLOCK_H_
 
-# include "stdbool.h"
+# include <stddef.h>
+# include <stdbool.h>
 # include "generic_dlist.h"
 
 typedef struct s_block t_block;
