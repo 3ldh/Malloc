@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Wed Jan 25 22:10:09 2017 bougon_p
+## Last update Wed Jan 25 22:14:08 2017 bougon_p
 ##
 
 DEBUG	= NO
@@ -87,11 +87,11 @@ all:
 			@make -s $(NAME)
 
 clean:
-			@$(RM) $(OBJ)
+			@$(RM) $(OBJ) $(OBJTEST)
 			@echo -e "[ $(RED)OK$(WHITE) ] clean sucessfull"
 
 fclean: 		clean
-			@$(RM) $(NAME)
+			@$(RM) $(NAME) $(NAMETEST)
 			@echo -e "[ $(RED)OK$(WHITE) ] fclean succesfull"
 
 re:			fclean all
