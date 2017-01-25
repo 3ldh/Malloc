@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 19:55:54 2017 bougon_p
-** Last update Wed Jan 25 21:29:00 2017 bougon_p
+** Last update Wed Jan 25 21:59:16 2017 bougon_p
 */
 
 #ifndef BLOCK_H_
@@ -13,6 +13,7 @@
 
 # include <stddef.h>
 # include <stdbool.h>
+# include <unistd.h>
 # include "generic_dlist.h"
 
 typedef struct s_block t_block;

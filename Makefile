@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Wed Jan 25 21:12:21 2017 bougon_p
+## Last update Wed Jan 25 22:10:09 2017 bougon_p
 ##
 
 DEBUG	= NO
@@ -24,9 +24,22 @@ RED	= \033[1;31m
 
 # Sources variables
 
-SRC	= 	main.c	\
-		generic_dlist.c
+SRC	= 	generic_dlist.c \
+		malloc.c	\
+		realloc.c	\
+		free.c		\
+		show_alloc_mem.c
 
+
+# Test Variables
+
+SRCTEST	 	=	main.c
+
+NAMETEST 	=	unit_test_malloc
+
+OBJTEST		= 	$(addprefix src/, $(SRCTEST:.c=.o))
+
+TESTLDFLAGS 	= 	-lmy_malloc -L.
 
 # Project variables
 
@@ -62,8 +75,13 @@ endif
 			@echo -e "\n\n$(RED)Linking with :$(WHITE)\n"
 			@echo -e "$(RED)CC$(WHITE)     = $(CC)"
 			@echo -e "$(RED)CFLAGS$(WHITE) = $(CFLAGS)"
-			@$(CC) $(OBJ) -o $(NAME) $(INC)
+			@ar rc $(NAME) $(OBJ)
+			@ranlib $(NAME)
 			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Library® Compiled Sucesfully $(WHITE)\n"
+ifeq ($(DEBUG), YES)
+			@$(CC) $(OBJTEST) -o $(NAMETEST) $(INC) $(TESTLDFLAGS)
+			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Unit Tests are ready to break your malloc $(WHITE)\n"
+endif
 
 all:
 			@make -s $(NAME)
