@@ -5,22 +5,25 @@
 ** Login   <sauvau_m@epitech.net>
 ** 
 ** Started on  Thu Jan 26 12:52:43 2017 Sauvau Mathieu
-** Last update Thu Jan 26 13:01:55 2017 Sauvau Mathieu
+** Last update Thu Jan 26 17:43:01 2017 Sauvau Mathieu
 */
 
 #include "block.h"
 
+size_t		get_right_pagesize(size_t size)
+{
+  return ((size - 1) / getpagesize() * getpagesize() + getpagesize());
+}
+
 t_block		add_heap(t_block last_block, size_t size)
 {
   t_block	b;
-
+  
   b = sbrk(0);
-  if (size < getpagesize())
-    size = getpagesize();
-  if ((int)sbbrk(BLOCK_SIZE + size) < 0)
+  if (sbrk(BLOCK_SIZE + get_right_pagesize(size)) == (void*)-1)
     return NULL;
   b->size = size;
-  b->free = false;
+  b->free = 1;
   b->addr = b->c;
   b->next = NULL;
   b->prev = last_block;
@@ -29,8 +32,9 @@ t_block		add_heap(t_block last_block, size_t size)
 
 t_block		find_block(t_block *last_block, size_t size)
 {
-  t_block	block = start;
-  
+  t_block	block;
+
+  block = start;
   while (block && block->free && block->size <= size)
     {
       *last_block = block;
@@ -43,9 +47,9 @@ void		split_block(t_block block, size_t size)
 {
   t_block	b;
 
-  b = b->c + size;
-  b->size = b->size - s - BLOCK_SIZE;
-  b->free = false;
+  b = (t_block)(block->c + size);
+  b->size = b->size - size - BLOCK_SIZE;
+  b->free = 0;
   b->addr = b->c;
   b->next = block->next;
   b->prev = block;
@@ -53,4 +57,12 @@ void		split_block(t_block block, size_t size)
   block->next = b;
   if (b->next)
     b->next->prev = b;
+}
+
+t_block		add_and_split(t_block block, size_t size)
+{
+  if ((block = add_heap(NULL, size)) == NULL)
+    return (NULL);
+  split_block(block, size);
+  return (block);
 }
