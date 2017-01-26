@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 ** 
 ** Started on  Thu Jan 26 12:52:43 2017 Sauvau Mathieu
-** Last update Thu Jan 26 12:55:35 2017 Sauvau Mathieu
+** Last update Thu Jan 26 13:01:55 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -36,7 +36,7 @@ t_block		find_block(t_block *last_block, size_t size)
       *last_block = block;
       block = block->next;
     }
-  return (block)
+  return (block);
 }
 
 void		split_block(t_block block, size_t size)
