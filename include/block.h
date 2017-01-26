@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 19:55:54 2017 bougon_p
-** Last update Wed Jan 25 21:59:16 2017 bougon_p
+** Last update Thu Jan 26 11:16:23 2017 Sauvau Mathieu
 */
 
 #ifndef BLOCK_H_
@@ -14,14 +14,21 @@
 # include <stddef.h>
 # include <stdbool.h>
 # include <unistd.h>
-# include "generic_dlist.h"
 
-typedef struct s_block t_block;
+# define BLOCK_SIZE 17
 
-typedef struct	s_block
+typedef struct s_block *t_block;
+
+struct		s_block
 {
-  bool		full;
+  size_t	size;
+  t_block	next;
+  t_block	prev;
+  bool		free;
   void		*addr;
-}		t_block;
+  char		c[1];
+};
+
+void		*start = NULL;
 
 #endif /* !BLOCK_H_ */
