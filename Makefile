@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Thu Jan 26 17:33:39 2017 Sauvau Mathieu
+## Last update Thu Jan 26 17:46:10 2017 Sauvau Mathieu
 ##
 
 DEBUG	= NO
@@ -24,9 +24,11 @@ RED	= \033[1;31m
 
 # Sources variables
 
-SRC	= 	generic_dlist.c \
-		malloc.c	\
+SRC	= 	malloc.c	\
 		malloc_utilities.c \
+		realloc.c \
+		show_alloc_mem.c \
+		free.c \
 
 # Test Variables
 
@@ -59,7 +61,7 @@ CC	= gcc
 
 #Project Rules
 
-$(NAME):		$(OBJ)
+$(NAME):		$(OBJ) $(OBJTEST)
 ifeq ($(DEBUG), YES)
 			@tput setaf 1; tput bold;
 			@echo " ____________________ ________________________   ____ ___._________________";
@@ -78,6 +80,8 @@ endif
 ifeq ($(DEBUG), YES)
 			@$(CC) $(OBJTEST) -o $(NAMETEST) $(INC) $(TESTLDFLAGS)
 			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Unit Tests are ready to break your malloc $(WHITE)\n"
+else
+			@$(RM) $(OBJTEST)
 endif
 
 all:
