@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:18:09 2017 bougon_p
-** Last update Mon Jan 30 13:39:56 2017 bougon_p
+** Last update Mon Jan 30 14:04:37 2017 bougon_p
 */
 
 #include <stdio.h>
@@ -22,7 +22,8 @@ void		show_alloc_mem()
   tmp = start_heap;
   while (tmp)
     {
-      printf("%p - %p : %lu bytes\n", tmp, tmp + tmp->size, tmp->size);
+      if (tmp->free == 0)
+	printf("%p - %p : %lu bytes\n", tmp, tmp + tmp->size, tmp->size);
       tmp = tmp->next;
     }
 }

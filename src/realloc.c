@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Mon Jan 30 13:53:21 2017 bougon_p
+** Last update Mon Jan 30 14:03:01 2017 bougon_p
 */
 
 #include <string.h>
@@ -22,7 +22,7 @@ bool		fusion_is_possible(t_block block, size_t size)
 
   tmp = block->next;
   current_size = block->size;
-  while (current_size < size && tmp-> free == true)
+  while (current_size < size && tmp->free == 1)
     {
       current_size += tmp->size;
       tmp = tmp->next;
@@ -40,7 +40,7 @@ bool		fusion_realloc(t_block block, size_t size)
   if (!fusion_is_possible(block, size))
     return (false);
   tmp = block->next;
-  while (block->size < size && tmp-> free == true)
+  while (block->size < size && tmp->free == 1)
     {
       block->next = tmp->next;
       tmp->next->prev = block;
@@ -66,6 +66,6 @@ void		*realloc(void *ptr, size_t size)
   if (!(new_ptr = malloc(size)))
     return (NULL);
   memcpy(new_ptr, ptr, block->size);
-  block->free = true;
+  block->free = 0;
   return (new_ptr);
 }
