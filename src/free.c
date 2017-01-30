@@ -20,10 +20,9 @@ void	fusion_right(t_block to_fusion)
 
 void	fusion_left(t_block to_fusion)
 {
-  if (to_fusion->prev->prev)
-    to_fusion->prev->prev->next = to_fusion;
-  to_fusion->size += to_fusion->prev->size + BLOCK_SIZE;
-  to_fusion->prev = to_fusion->prev->prev;
+  to_fusion = to_fusion->prev;
+  if (to_fusion->next && to_fusion->next->free)
+    fusion_right(to_fusion);
 }
 
 //Just leave 42 Bytes for the sake of the world !

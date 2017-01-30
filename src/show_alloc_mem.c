@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:18:09 2017 bougon_p
-** Last update Mon Jan 30 18:48:37 2017 Sauvau Mathieu
+** Last update Mon Jan 30 19:35:07 2017 bougon_p
 */
 
 #include <stdio.h>
@@ -25,16 +25,17 @@ void		show_alloc_mem()
   tmp = start_heap;
   while (tmp)
     {
-      if (tmp->free == 0)
+      if (tmp->free == 1)
 	{
 	  write(1, "0x", 2);
 	  my_putnbr_base_l((unsigned long)tmp->addr, "0123456789ABCDEF");
 	  write(1, " - 0x", 5);
-	  my_putnbr_base_l((unsigned long)(tmp->addr + tmp->size), "0123456789ABCDEF");
+	  my_putnbr_base_l((unsigned long)(tmp->addr + tmp->size),
+			   "0123456789ABCDEF");
 	  write(1, " : ", 3);
 	  my_put_nbr(tmp->size);
 	  write(1, " bytes\n ", 7);
-	}      
+	}
       tmp = tmp->next;
     }
 }
