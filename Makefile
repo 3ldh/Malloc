@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Mon Jan 30 13:37:01 2017 bougon_p
+## Last update Mon Jan 30 17:50:41 2017 Sauvau Mathieu
 ##
 
 DEBUG	= NO
@@ -29,6 +29,8 @@ SRC	= 	malloc.c	\
 		realloc.c \
 		show_alloc_mem.c \
 		free.c \
+		my_put_nbr.c \
+		my_putnbr_base.c \
 
 # Test Variables
 
