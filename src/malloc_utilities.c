@@ -1,11 +1,11 @@
 /*
 ** malloc_utilities.c for  in /home/sauvau_m/rendu/PSU_2016_malloc/include
-** 
+**
 ** Made by Sauvau Mathieu
 ** Login   <sauvau_m@epitech.net>
-** 
+**
 ** Started on  Thu Jan 26 12:52:43 2017 Sauvau Mathieu
-** Last update Thu Jan 26 13:01:55 2017 Sauvau Mathieu
+** Last update Thu Jan 26 15:49:57 2017 bougon_p
 */
 
 #include "block.h"
@@ -30,7 +30,7 @@ t_block		add_heap(t_block last_block, size_t size)
 t_block		find_block(t_block *last_block, size_t size)
 {
   t_block	block = start;
-  
+
   while (block && block->free && block->size <= size)
     {
       *last_block = block;

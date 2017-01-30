@@ -5,16 +5,24 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:18:09 2017 bougon_p
-** Last update Wed Jan 25 21:19:32 2017 bougon_p
+** Last update Sun Jan 29 14:46:28 2017 bougon_p
 */
 
+#include <stdio.h>
 #include "block.h"
 
 /*
-** Here use the dump func of the dlist
-** by passing it a ptr on a block dump function
+** Dump the allocated space of memory
 */
-void	show_alloc_mem()
+void		show_alloc_mem()
 {
+  t_block	tmp;
 
+  printf("break : %p\n", GET_BREAK);
+  tmp = start;
+  while (tmp)
+    {
+      printf("%p - %p : %lu bytes\n", tmp, tmp + tmp->size, tmp->size);
+      tmp = tmp->next;
+    }
 }
