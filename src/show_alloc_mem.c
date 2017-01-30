@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:18:09 2017 bougon_p
-** Last update Mon Jan 30 14:26:46 2017 Sauvau Mathieu
+** Last update Mon Jan 30 18:48:37 2017 Sauvau Mathieu
 */
 
 #include <stdio.h>
@@ -18,12 +18,23 @@ void		show_alloc_mem()
 {
   t_block	tmp;
 
-  printf("break : %p\n", GET_BREAK);
+  write(1, "break : ", 8);
+  write(1, "0x", 2);
+  my_putnbr_base_l((unsigned long)GET_BREAK, "0123456789ABCDEF");
+  write(1, "\n", 1);
   tmp = start_heap;
   while (tmp)
     {
       if (tmp->free == 0)
-	printf("%p - %p : %lu bytes\n", tmp->addr, tmp->addr + tmp->size, tmp->size);
+	{
+	  write(1, "0x", 2);
+	  my_putnbr_base_l((unsigned long)tmp->addr, "0123456789ABCDEF");
+	  write(1, " - 0x", 5);
+	  my_putnbr_base_l((unsigned long)(tmp->addr + tmp->size), "0123456789ABCDEF");
+	  write(1, " : ", 3);
+	  my_put_nbr(tmp->size);
+	  write(1, " bytes\n ", 7);
+	}      
       tmp = tmp->next;
     }
 }

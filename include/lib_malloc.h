@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:24:10 2017 bougon_p
-** Last update Wed Jan 25 21:28:42 2017 bougon_p
+** Last update Mon Jan 30 18:09:27 2017 Sauvau Mathieu
 */
 
 #ifndef LIB_MALLOC_H_

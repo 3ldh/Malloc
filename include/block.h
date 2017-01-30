@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 19:55:54 2017 bougon_p
-** Last update Mon Jan 30 13:49:03 2017 bougon_p
+** Last update Mon Jan 30 18:09:55 2017 Sauvau Mathieu
 */
 
 #ifndef BLOCK_H_
@@ -46,6 +46,8 @@ t_block		add_heap(t_block last_block, size_t size);
 t_block		find_block(t_block *last_block, size_t size);
 void		split_block(t_block block, size_t size);
 t_block		add_and_split(t_block block, size_t size);
+long		my_put_nbr(long long nb);
+void		my_putnbr_base_l(unsigned long nb, char *base);
 
 extern void		*start_heap;
 

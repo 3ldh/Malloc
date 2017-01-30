@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Mon Jan 30 18:16:25 2017 bougon_p
+** Last update Mon Jan 30 19:12:44 2017 bougon_p
 */
 
 #include "block.h"
@@ -14,16 +14,16 @@ void	fusion_right(t_block to_fusion)
 {
   if (to_fusion->next->next)
     to_fusion->next->next->prev = to_fusion;
-  to_fusion->next = to_fusion->next->next;
   to_fusion->size += to_fusion->next->size + BLOCK_SIZE;
+  to_fusion->next = to_fusion->next->next;
 }
 
 void	fusion_left(t_block to_fusion)
 {
   if (to_fusion->prev->prev)
     to_fusion->prev->prev->next = to_fusion;
-  to_fusion->prev = to_fusion->prev->prev;
   to_fusion->size += to_fusion->prev->size + BLOCK_SIZE;
+  to_fusion->prev = to_fusion->prev->prev;
 }
 
 //Just leave 42 Bytes for the sake of the world !
