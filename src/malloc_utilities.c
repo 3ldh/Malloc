@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Thu Jan 26 12:52:43 2017 Sauvau Mathieu
-** Last update Mon Jan 30 13:10:12 2017 bougon_p
+** Last update Mon Jan 30 13:39:43 2017 bougon_p
 */
 
 #include "block.h"
@@ -34,7 +34,7 @@ t_block		find_block(t_block *last_block, size_t size)
 {
   t_block	block;
 
-  block = start;
+  block = start_heap;
   while (block && block->free && block->size <= size)
     {
       *last_block = block;

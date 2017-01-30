@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Thu Jan 26 17:46:10 2017 Sauvau Mathieu
+## Last update Mon Jan 30 13:37:01 2017 bougon_p
 ##
 
 DEBUG	= NO
@@ -61,7 +61,7 @@ CC	= gcc
 
 #Project Rules
 
-$(NAME):		$(OBJ) $(OBJTEST)
+$(NAME):		$(OBJ)
 ifeq ($(DEBUG), YES)
 			@tput setaf 1; tput bold;
 			@echo " ____________________ ________________________   ____ ___._________________";
@@ -78,10 +78,9 @@ endif
 			@ranlib $(NAME)
 			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Library® Compiled Sucesfully $(WHITE)\n"
 ifeq ($(DEBUG), YES)
+			@make -s $(OBJTEST)
 			@$(CC) $(OBJTEST) -o $(NAMETEST) $(INC) $(TESTLDFLAGS)
 			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Unit Tests are ready to break your malloc $(WHITE)\n"
-else
-			@$(RM) $(OBJTEST)
 endif
 
 all:

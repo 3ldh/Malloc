@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Mon Jan 30 13:11:26 2017 bougon_p
+** Last update Mon Jan 30 13:52:18 2017 bougon_p
 */
 
 #include "block.h"
@@ -35,8 +35,8 @@ void		free(void *ptr)
   if (block->addr != ptr)
     return;
   block->free = true;
-  if (block->next->free)
+  if (block->next && block->next->free)
     fusion_right(block);
-  if (block->prev->free)
+  if (block->prev && block->prev->free)
     fusion_left(block);
 }

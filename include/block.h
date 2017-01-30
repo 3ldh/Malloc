@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 19:55:54 2017 bougon_p
-** Last update Mon Jan 30 13:10:25 2017 bougon_p
+** Last update Mon Jan 30 13:49:03 2017 bougon_p
 */
 
 #ifndef BLOCK_H_
@@ -16,17 +16,17 @@
 # include <stdbool.h>
 # include <unistd.h>
 
-#if UINTPTR_MAX == 0xffffffff
+# if UINTPTR_MAX == 0xffffffff
 /* 32-bit */
-# define BLOCK_SIZE 20
-# define MINIMAL_SIZE 4
-#elif UINTPTR_MAX == 0xffffffffffffffff
+#  define BLOCK_SIZE 20
+#  define MINIMAL_SIZE 4
+# elif UINTPTR_MAX == 0xffffffffffffffff
 /* 64-bit */
-#define BLOCK_SIZE 40
-# define MINIMAL_SIZE 8
-#else
+#  define BLOCK_SIZE 40
+#  define MINIMAL_SIZE 8
+# else
 /* wtf */
-#endif
+# endif
 
 # define GET_BREAK sbrk(0)
 
@@ -47,8 +47,8 @@ t_block		find_block(t_block *last_block, size_t size);
 void		split_block(t_block block, size_t size);
 t_block		add_and_split(t_block block, size_t size);
 
-void		*start = NULL;
+extern void		*start_heap;
 
-# define IS_ON_HEAP(ptr) (ptr < start || ptr > sbrk(0)) ? false : true
+# define IS_ON_HEAP(ptr) (ptr < start_heap || ptr > sbrk(0)) ? false : true
 
 #endif /* !BLOCK_H_ */

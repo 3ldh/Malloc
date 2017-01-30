@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Mon Jan 30 13:11:40 2017 bougon_p
+** Last update Mon Jan 30 13:53:21 2017 bougon_p
 */
 
 #include <string.h>
@@ -59,6 +59,8 @@ void		*realloc(void *ptr, size_t size)
   if (!IS_ON_HEAP(ptr))
     return (NULL);
   block = ptr - BLOCK_SIZE;
+  if (block->addr != ptr)
+    return (NULL);
   if (fusion_realloc(block, size))
     return (ptr);
   if (!(new_ptr = malloc(size)))

@@ -5,10 +5,12 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:15:11 2017 bougon_p
-** Last update Thu Jan 26 17:17:15 2017 Sauvau Mathieu
+** Last update Mon Jan 30 13:50:42 2017 bougon_p
 */
 
 #include "block.h"
+
+void *start_heap = NULL;
 
 // Malloc ...
 void		*malloc(size_t size)
@@ -16,15 +18,15 @@ void		*malloc(size_t size)
   t_block	block;
   t_block	last_block;
 
-  if (!start)
+  if (!start_heap)
     {
       if ((block = add_and_split(NULL, size)) == NULL)
 	return (NULL);
-      start = block;
+      start_heap = block;
     }
   else
     {
-      last_block = start;
+      last_block = start_heap;
       block = find_block(&last_block, size);
       if (block)
 	{
