@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:18:09 2017 bougon_p
-** Last update Mon Jan 30 14:04:37 2017 bougon_p
+** Last update Mon Jan 30 14:26:46 2017 Sauvau Mathieu
 */
 
 #include <stdio.h>
@@ -23,7 +23,7 @@ void		show_alloc_mem()
   while (tmp)
     {
       if (tmp->free == 0)
-	printf("%p - %p : %lu bytes\n", tmp, tmp + tmp->size, tmp->size);
+	printf("%p - %p : %lu bytes\n", tmp->addr, tmp->addr + tmp->size, tmp->size);
       tmp = tmp->next;
     }
 }

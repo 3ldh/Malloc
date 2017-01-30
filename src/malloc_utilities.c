@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Thu Jan 26 12:52:43 2017 Sauvau Mathieu
-** Last update Mon Jan 30 13:39:43 2017 bougon_p
+** Last update Mon Jan 30 15:06:01 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -22,7 +22,7 @@ t_block		add_heap(t_block last_block, size_t size)
   b = sbrk(0);
   if (sbrk(BLOCK_SIZE + get_right_pagesize(size)) == (void*)-1)
     return NULL;
-  b->size = size;
+  b->size = get_right_pagesize(size);
   b->free = 1;
   b->addr = b->c;
   b->next = NULL;
@@ -48,7 +48,7 @@ void		split_block(t_block block, size_t size)
   t_block	b;
 
   b = (t_block)(block->c + size);
-  b->size = b->size - size - BLOCK_SIZE;
+  b->size = block->size - size - BLOCK_SIZE;
   b->free = 0;
   b->addr = b->c;
   b->next = block->next;
