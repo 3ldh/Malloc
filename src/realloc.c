@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Mon Jan 30 14:03:01 2017 bougon_p
+** Last update Mon Jan 30 18:31:30 2017 bougon_p
 */
 
 #include <string.h>
@@ -61,11 +61,18 @@ void		*realloc(void *ptr, size_t size)
   block = ptr - BLOCK_SIZE;
   if (block->addr != ptr)
     return (NULL);
-  if (fusion_realloc(block, size))
+  if (block->size > size)
+    {
+      if (fusion_realloc(block, size))
+	return (ptr);
+    }
+  else if (block->size < size)
+    split_block(block, size);
+  else
     return (ptr);
   if (!(new_ptr = malloc(size)))
     return (NULL);
   memcpy(new_ptr, ptr, block->size);
-  block->free = 0;
+  free(block->addr);
   return (new_ptr);
 }
