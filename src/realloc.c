@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Sun Jan 29 14:44:11 2017 bougon_p
+** Last update Mon Jan 30 13:11:40 2017 bougon_p
 */
 
 #include <string.h>
@@ -44,7 +44,7 @@ bool		fusion_realloc(t_block block, size_t size)
     {
       block->next = tmp->next;
       tmp->next->prev = block;
-      block->size += tmp->size;
+      block->size += tmp->size + BLOCK_SIZE;
       tmp = tmp->next;
     }
   return (true);

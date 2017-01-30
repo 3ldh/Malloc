@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Thu Jan 26 14:07:12 2017 bougon_p
+## Last update Thu Jan 26 17:46:10 2017 Sauvau Mathieu
 ##
 
 DEBUG	= NO
@@ -24,12 +24,11 @@ RED	= \033[1;31m
 
 # Sources variables
 
-SRC	= 	generic_dlist.c \
-		malloc.c	\
-		realloc.c	\
-		free.c		\
-		show_alloc_mem.c
-
+SRC	= 	malloc.c	\
+		malloc_utilities.c \
+		realloc.c \
+		show_alloc_mem.c \
+		free.c \
 
 # Test Variables
 
