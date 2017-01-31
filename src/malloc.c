@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:15:11 2017 bougon_p
-** Last update Tue Jan 31 17:22:36 2017 Sauvau Mathieu
+** Last update Tue Jan 31 18:01:59 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -19,7 +19,7 @@ void		*_malloc(size_t size)
   t_block	block;
   t_block	last_block;
 
-  //  __asm__("int $3");
+  size = ((size - 1) / MINIMAL_SIZE * MINIMAL_SIZE + MINIMAL_SIZE);
   if (!start_heap)
     {
       if ((block = add_and_split(NULL, size)) == NULL)

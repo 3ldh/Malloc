@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Tue Jan 31 17:19:02 2017 Sauvau Mathieu
+** Last update Tue Jan 31 18:17:35 2017 Sauvau Mathieu
 */
 
 #include <string.h>
@@ -35,7 +35,6 @@ void		*realloc(void *ptr, size_t size)
   t_block	block;
   void		*new_ptr;
 
-  //__asm__(int $3);
   if (!ptr)
     return (malloc(size));
   if (!IS_ON_HEAP(ptr))
@@ -43,6 +42,7 @@ void		*realloc(void *ptr, size_t size)
   block = ptr - BLOCK_SIZE;
   if (block->addr != ptr)
     return (NULL);
+  size = ((size - 1) / MINIMAL_SIZE * MINIMAL_SIZE + MINIMAL_SIZE);
   if (block->size < size)
     {
       if (fusion_realloc(block, size))

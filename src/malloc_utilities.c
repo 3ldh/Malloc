@@ -5,12 +5,12 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Thu Jan 26 12:52:43 2017 Sauvau Mathieu
-** Last update Mon Jan 30 18:58:03 2017 Sauvau Mathieu
+** Last update Tue Jan 31 17:51:24 2017 Sauvau Mathieu
 */
 
 #include "block.h"
 
-size_t		get_right_pagesize(size_t size)
+size_t		align_pagesize(size_t size)
 {
   return ((size - 1) / getpagesize() * getpagesize() + getpagesize());
 }
@@ -20,9 +20,9 @@ t_block		add_heap(t_block last_block, size_t size)
   t_block	b;
 
   b = sbrk(0);
-  if (sbrk(BLOCK_SIZE + get_right_pagesize(size)) == (void*)-1)
+  if (sbrk(BLOCK_SIZE + align_pagesize(size)) == (void*)-1)
     return NULL;
-  b->size = get_right_pagesize(size);
+  b->size = align_pagesize(size);
   b->free = 1;
   b->addr = b->c;
   b->next = NULL;
