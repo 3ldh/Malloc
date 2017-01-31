@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:15:11 2017 bougon_p
-** Last update Tue Jan 31 18:01:59 2017 Sauvau Mathieu
+** Last update Tue Jan 31 19:17:50 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -43,9 +43,11 @@ void		*_malloc(size_t size)
 void		*malloc(size_t size)
 {
   void		*ptr;
-  
+
+  //  write(1, "deb malloc\n", 11);
   pthread_mutex_lock(&mutex);
   ptr = _malloc(size);
   pthread_mutex_unlock(&mutex);
+  //  write(1, "end malloc\n", 11);
   return (ptr);
 }

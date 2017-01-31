@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:18:09 2017 bougon_p
-** Last update Mon Jan 30 19:56:27 2017 Sauvau Mathieu
+** Last update Tue Jan 31 18:39:43 2017 Sauvau Mathieu
 */
 
 #include <stdio.h>
@@ -28,9 +28,9 @@ void		show_alloc_mem()
         if (tmp->free == 0)
           {
               write(1, "0x", 2);
-              my_putnbr_base_l((unsigned long)tmp->addr, "0123456789ABCDEF");
+              my_putnbr_base_l((unsigned long)tmp, "0123456789ABCDEF");
               write(1, " - 0x", 5);
-              my_putnbr_base_l((unsigned long)(tmp->addr + tmp->size),
+              my_putnbr_base_l((unsigned long)(tmp + tmp->size),
                                "0123456789ABCDEF");
               write(1, " : ", 3);
               my_put_nbr(tmp->size);

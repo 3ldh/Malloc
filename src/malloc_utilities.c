@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Thu Jan 26 12:52:43 2017 Sauvau Mathieu
-** Last update Tue Jan 31 17:51:24 2017 Sauvau Mathieu
+** Last update Tue Jan 31 19:40:40 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -19,9 +19,10 @@ t_block		add_heap(t_block last_block, size_t size)
 {
   t_block	b;
 
+  //  write(1, "deb add heap\n", 13);
   b = sbrk(0);
   if (sbrk(BLOCK_SIZE + align_pagesize(size)) == (void*)-1)
-    return NULL;
+      return NULL;
   b->size = align_pagesize(size);
   b->free = 1;
   b->addr = b->c;
@@ -66,6 +67,7 @@ void		split_block(t_block block, size_t size)
 
 t_block		add_and_split(t_block block, size_t size)
 {
+  //  write(1, "deb add and split\n", 19);
   if (!start_heap)
     {
       if ((block = add_heap(NULL, size)) == NULL)
@@ -77,5 +79,6 @@ t_block		add_and_split(t_block block, size_t size)
 	return (NULL);
     }
   split_block(block, size);
+  //  write(1, "end add and split\n", 19);
   return (block);
 }
