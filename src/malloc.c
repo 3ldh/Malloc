@@ -5,15 +5,16 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:15:11 2017 bougon_p
-** Last update Mon Jan 30 19:47:27 2017 Sauvau Mathieu
+** Last update Tue Jan 31 17:22:36 2017 Sauvau Mathieu
 */
 
 #include "block.h"
 
-void *start_heap = NULL;
+void		*start_heap = NULL;
+pthread_mutex_t	mutex;
 
 // Malloc ...
-void		*malloc(size_t size)
+void		*_malloc(size_t size)
 {
   t_block	block;
   t_block	last_block;
@@ -37,4 +38,14 @@ void		*malloc(size_t size)
       block->free = 0;
     }
   return (block->c);
+}
+
+void		*malloc(size_t size)
+{
+  void		*ptr;
+  
+  pthread_mutex_lock(&mutex);
+  ptr = _malloc(size);
+  pthread_mutex_unlock(&mutex);
+  return (ptr);
 }

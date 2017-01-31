@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 19:55:54 2017 bougon_p
-** Last update Mon Jan 30 18:09:55 2017 Sauvau Mathieu
+** Last update Tue Jan 31 17:14:20 2017 Sauvau Mathieu
 */
 
 #ifndef BLOCK_H_
@@ -15,6 +15,7 @@
 # include <stddef.h>
 # include <stdbool.h>
 # include <unistd.h>
+# include <pthread.h>
 
 # if UINTPTR_MAX == 0xffffffff
 /* 32-bit */
@@ -51,6 +52,7 @@ long		my_put_nbr(long long nb);
 void		my_putnbr_base_l(unsigned long nb, char *base);
 
 extern void		*start_heap;
+extern pthread_mutex_t	mutex;
 
 # define IS_ON_HEAP(ptr) (ptr < start_heap || ptr > sbrk(0)) ? false : true
 

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Mon Jan 30 19:12:44 2017 bougon_p
+** Last update Tue Jan 31 17:23:57 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -26,10 +26,10 @@ void	fusion_left(t_block to_fusion)
 }
 
 //Just leave 42 Bytes for the sake of the world !
-void		free(void *ptr)
+void		_free(void *ptr)
 {
   t_block	block;
-
+  
   if (!IS_ON_HEAP(ptr))
     return;
   block = (t_block)((char *)ptr - BLOCK_SIZE);
@@ -40,4 +40,11 @@ void		free(void *ptr)
     fusion_right(block);
   if (block->prev && block->prev->free)
     fusion_left(block);
+}
+
+void		free(void *ptr)
+{
+  pthread_mutex_lock(&mutex);
+  _free(ptr);
+  pthread_mutex_unlock(&mutex);
 }
