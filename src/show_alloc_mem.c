@@ -25,17 +25,17 @@ void		show_alloc_mem()
   tmp = start_heap;
   while (tmp)
     {
-      if (tmp->free == 0)
-	{
-	  write(1, "0x", 2);
-	  my_putnbr_base_l((unsigned long)tmp->addr, "0123456789ABCDEF");
-	  write(1, " - 0x", 5);
-	  my_putnbr_base_l((unsigned long)(tmp->addr + tmp->size),
-			   "0123456789ABCDEF");
-	  write(1, " : ", 3);
-	  my_put_nbr(tmp->size);
-	  write(1, " bytes\n ", 7);
-	}
-      tmp = tmp->next;
+        if (tmp->free == 0)
+          {
+              write(1, "0x", 2);
+              my_putnbr_base_l((unsigned long)tmp->addr, "0123456789ABCDEF");
+              write(1, " - 0x", 5);
+              my_putnbr_base_l((unsigned long)(tmp->addr + tmp->size),
+                               "0123456789ABCDEF");
+              write(1, " : ", 3);
+              my_put_nbr(tmp->size);
+              write(1, " bytes\n ", 7);
+          }
+        tmp = tmp->next;
     }
 }

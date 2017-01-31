@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Tue Jan 31 15:27:35 2017 Sauvau Mathieu
+## Last update Tue Jan 31 15:36:59 2017 bougon_p
 ##
 
 DEBUG	= NO
@@ -40,9 +40,7 @@ NAMETEST 	=	unit_test_malloc
 
 OBJTEST		= 	$(addprefix src/, $(SRCTEST:.c=.o))
 
-TESTLDFLAGS 	= 	-lmy_malloc -L.
-
-LDFLAGS		=	-shared
+TESTLDFLAGS 	= 
 
 # Project variables
 
@@ -53,10 +51,12 @@ INC	= -Iinclude/
 RM	= rm -f
 
 ifeq ($(DEBUG), YES)
-CFLAGS	= -W -Wall -Wextra -g -D DEBUG -O0
+CFLAGS	= -W -Wall -Wextra -g -D DEBUG -O0 -fpic
 else
 CFLAGS	= -W -Wall -Wextra -Werror -fpic
 endif
+
+LDFLAGS		=	-shared
 
 NAME	= libmy_malloc.so
 

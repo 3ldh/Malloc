@@ -42,6 +42,7 @@ struct		s_block
   char		c[1];
 };
 
+void        fusion_right(t_block);
 t_block		add_heap(t_block last_block, size_t size);
 t_block		find_block(t_block *last_block, size_t size);
 void		split_block(t_block block, size_t size);

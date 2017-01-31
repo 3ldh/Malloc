@@ -4,31 +4,7 @@
 
 int main()
 {
-  char c[1];
-  /* void *ptr = malloc(105); */
-  /* show_alloc_mem(); */
-  /* free(ptr); */
-  //free(c);
-  //  ptr = malloc(4097);
-  //  show_alloc_mem();
-  //free(ptr);
-  //ptr = malloc(4097);
-  void *ptr1 = malloc(1056);
-  void *ptr2 = malloc(1000);
-  void *ptr3 = malloc(1000);
-  void *ptr4 = malloc(500);
-  show_alloc_mem();
-
-  free(ptr1);
-  free(ptr2);
-  free(ptr3);
-  free(ptr4);
-  ptr1 = malloc(100000000);
-  show_alloc_mem();
-  free(ptr1);
-  ptr1 = malloc(1);
-  ptr2 = malloc(4095);
-  show_alloc_mem();
-  free(ptr2);
-  show_alloc_mem();
+    void *ptr = malloc(12);
+    ptr = realloc(ptr, 13);
+    show_alloc_mem();
 }

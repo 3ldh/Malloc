@@ -13,41 +13,20 @@
 #include "lib_malloc.h"
 
 /*
-** Check if the fusion will be possible
-*/
-bool		fusion_is_possible(t_block block, size_t size)
-{
-  t_block	tmp;
-  size_t	current_size;
-
-  tmp = block->next;
-  current_size = block->size;
-  while (current_size < size && tmp->free == 1)
-    {
-      current_size += tmp->size;
-      tmp = tmp->next;
-    }
-  return (current_size > size);
-}
-
-/*
-** Try right successive fusions to add allocated space to ptr
+** Try right fusion to add allocated space to ptr
 */
 bool		fusion_realloc(t_block block, size_t size)
 {
-  t_block	tmp;
-
-  if (!fusion_is_possible(block, size))
-    return (false);
-  tmp = block->next;
-  while (block->size < size && tmp->free == 1)
+    if (block->next && block->next->free == 1
+        && block->size + block->next->size +
+           BLOCK_SIZE > size)
     {
-      block->next = tmp->next;
-      tmp->next->prev = block;
-      block->size += tmp->size + BLOCK_SIZE;
-      tmp = tmp->next;
+        fusion_right(block);
+        if (block->size > size)
+            split_block(block, size);
+        return (true);
     }
-  return (true);
+    return (false);
 }
 
 //realloc ...
@@ -61,12 +40,12 @@ void		*realloc(void *ptr, size_t size)
   block = ptr - BLOCK_SIZE;
   if (block->addr != ptr)
     return (NULL);
-  if (block->size > size)
+  if (block->size < size)
     {
       if (fusion_realloc(block, size))
-	return (ptr);
+      return (ptr);
     }
-  else if (block->size < size)
+  else if (block->size > size)
     split_block(block, size);
   else
     return (ptr);
