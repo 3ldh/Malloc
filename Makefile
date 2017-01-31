@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Mon Jan 30 17:50:41 2017 Sauvau Mathieu
+## Last update Tue Jan 31 15:27:35 2017 Sauvau Mathieu
 ##
 
 DEBUG	= NO
@@ -42,6 +42,8 @@ OBJTEST		= 	$(addprefix src/, $(SRCTEST:.c=.o))
 
 TESTLDFLAGS 	= 	-lmy_malloc -L.
 
+LDFLAGS		=	-shared
+
 # Project variables
 
 OBJ	= $(addprefix src/, $(SRC:.c=.o))
@@ -53,7 +55,7 @@ RM	= rm -f
 ifeq ($(DEBUG), YES)
 CFLAGS	= -W -Wall -Wextra -g -D DEBUG -O0
 else
-CFLAGS	= -W -Wall -Wextra -Werror
+CFLAGS	= -W -Wall -Wextra -Werror -fpic
 endif
 
 NAME	= libmy_malloc.so
@@ -76,8 +78,7 @@ endif
 			@echo -e "\n\n$(RED)Linking with :$(WHITE)\n"
 			@echo -e "$(RED)CC$(WHITE)     = $(CC)"
 			@echo -e "$(RED)CFLAGS$(WHITE) = $(CFLAGS)"
-			@ar rc $(NAME) $(OBJ)
-			@ranlib $(NAME)
+			@$(CC) $(OBJ) -o $(NAME) $(INC) $(LDFLAGS)
 			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Library® Compiled Sucesfully $(WHITE)\n"
 ifeq ($(DEBUG), YES)
 			@make -s $(OBJTEST)
