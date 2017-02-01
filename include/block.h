@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 19:55:54 2017 bougon_p
-** Last update Tue Jan 31 18:01:31 2017 Sauvau Mathieu
+** Last update Wed Feb  1 16:15:17 2017 Sauvau Mathieu
 */
 
 #ifndef BLOCK_H_
@@ -30,6 +30,7 @@
 # endif
 
 # define GET_BREAK sbrk(0)
+# define align(size) ((size - 1) / MINIMAL_SIZE * MINIMAL_SIZE + MINIMAL_SIZE);
 
 typedef struct s_block *t_block;
 
@@ -43,11 +44,10 @@ struct		s_block
   char		c[1];
 };
 
-void        fusion_right(t_block);
+void	        fusion_right(t_block);
 t_block		add_heap(t_block last_block, size_t size);
 t_block		find_block(t_block *last_block, size_t size);
 void		split_block(t_block block, size_t size);
-t_block		add_and_split(t_block block, size_t size);
 long		my_put_nbr(long long nb);
 void		my_putnbr_base_l(unsigned long nb, char *base);
 

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:15:11 2017 bougon_p
-** Last update Tue Jan 31 19:17:50 2017 Sauvau Mathieu
+** Last update Wed Feb  1 15:03:25 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -19,11 +19,12 @@ void		*_malloc(size_t size)
   t_block	block;
   t_block	last_block;
 
-  size = ((size - 1) / MINIMAL_SIZE * MINIMAL_SIZE + MINIMAL_SIZE);
+  size = align(size);
   if (!start_heap)
     {
-      if ((block = add_and_split(NULL, size)) == NULL)
+      if ((block = add_heap(NULL, size)) == NULL)
 	return (NULL);
+      split_block(block, size);
       block->free = 0;
       start_heap = block;
     }
@@ -33,8 +34,9 @@ void		*_malloc(size_t size)
       block = find_block(&last_block, size);
       if (block)
 	split_block(block, size);
-      else if ((block = add_and_split(last_block, size)) == NULL)
+      else if ((block = add_heap(last_block, size)) == NULL)
 	return (NULL);
+      split_block(block, size);
       block->free = 0;
     }
   return (block->c);

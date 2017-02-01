@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Tue Jan 31 19:42:50 2017 Sauvau Mathieu
+** Last update Wed Feb  1 16:02:53 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -40,17 +40,17 @@ void		_free(void *ptr)
   if (block->addr != ptr)
     return;
   block->free = 1;
+  /* if (block->prev && block->prev->free) */
+  /*   fusion_left(block); */
   if (block->next && block->next->free)
     fusion_right(block);
-  if (block->prev && block->prev->free)
-    fusion_left(block);
 }
 
 void		free(void *ptr)
 {
   //write(1, "deb free\n", 9);
   pthread_mutex_lock(&mutex);
-  //  (void)ptr;
+  (void)ptr;
   _free(ptr);
   pthread_mutex_unlock(&mutex);
   //  write(1, "end free\n", 9);
