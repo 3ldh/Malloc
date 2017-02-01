@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Tue Jan 31 19:39:25 2017 Sauvau Mathieu
+** Last update Wed Feb  1 14:00:20 2017 bougon_p
 */
 
 #include <string.h>
@@ -41,7 +41,7 @@ void		*realloc(void *ptr, size_t size)
   if (!ptr)
     return (malloc(size));
   if (!IS_ON_HEAP(ptr))
-    return (NULL);
+    return (ptr);
   block = (t_block)((char*)ptr - BLOCK_SIZE);
   if (block->addr != ptr) {
     write(1, "FUCK HERE\n", 10);

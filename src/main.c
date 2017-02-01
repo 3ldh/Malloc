@@ -4,21 +4,8 @@
 
 int main()
 {
-  char *ptr = malloc(1000000001);
-
-  show_alloc_mem();
-  free(ptr);
-
-  //  ptr = malloc(1000000001);
-  show_alloc_mem();
-  free(ptr);
-  /* strcpy(ptr, "toto\0"); */  
-  /* show_alloc_mem(); */
-  /* write(1, ptr, strlen(ptr)); */
-  /* write(1, "\n", 1); */
-  /* ptr = realloc(ptr, 10); */
-  /* show_alloc_mem(); */
-  /* printf("%s\n", ptr); */
-  /* write(1, ptr, strlen(ptr)); */
-  /* write(1, "\n", 1); */
+    show_alloc_mem();
+    void *ptr = malloc(100);
+    free(ptr);
+    free(ptr);
 }

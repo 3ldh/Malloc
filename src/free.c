@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Tue Jan 31 19:42:50 2017 Sauvau Mathieu
+** Last update Wed Feb  1 14:18:52 2017 bougon_p
 */
 
 #include "block.h"
@@ -24,7 +24,7 @@ void	fusion_left(t_block to_fusion)
 {
   //  write(1, "deb fusion left\n", 16);
   to_fusion = to_fusion->prev;
-  if (to_fusion->next && to_fusion->next->free)
+  if (to_fusion && to_fusion->next && to_fusion->next->free)
     fusion_right(to_fusion);
   //  write(1, "end fusion left\n", 16);
 }
@@ -33,7 +33,7 @@ void	fusion_left(t_block to_fusion)
 void		_free(void *ptr)
 {
   t_block	block;
-  
+
   if (!IS_ON_HEAP(ptr))
     return;
   block = (t_block)((char *)ptr - BLOCK_SIZE);
@@ -42,8 +42,8 @@ void		_free(void *ptr)
   block->free = 1;
   if (block->next && block->next->free)
     fusion_right(block);
-  if (block->prev && block->prev->free)
-    fusion_left(block);
+  //if (block->prev && block->prev->free)
+    //    fusion_left(block);
 }
 
 void		free(void *ptr)
