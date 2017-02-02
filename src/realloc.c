@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Wed Feb  1 14:00:20 2017 bougon_p
+** Last update Wed Feb  1 16:40:45 2017 bougon_p
 */
 
 #include <string.h>
@@ -40,7 +40,7 @@ void		*realloc(void *ptr, size_t size)
   //  write(1, "deb realloc\n", 12);
   if (!ptr)
     return (malloc(size));
-  if (!IS_ON_HEAP(ptr))
+  if (start_heap == NULL || !IS_ON_HEAP(ptr))
     return (ptr);
   block = (t_block)((char*)ptr - BLOCK_SIZE);
   if (block->addr != ptr) {

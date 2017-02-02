@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Tue Jan 31 16:11:52 2017 Sauvau Mathieu
+## Last update Wed Feb  1 15:57:46 2017 bougon_p
 ##
 
 DEBUG	= NO
@@ -24,13 +24,14 @@ RED	= \033[1;31m
 
 # Sources variables
 
-SRC	= 	malloc.c	\
-		malloc_utilities.c \
-		realloc.c \
-		show_alloc_mem.c \
-		free.c \
-		my_put_nbr.c \
-		my_putnbr_base.c \
+SRC	= 	malloc.c		\
+		calloc.c		\
+		malloc_utilities.c	\
+		realloc.c		\
+		show_alloc_mem.c	\
+		free.c			\
+		my_put_nbr.c		\
+		my_putnbr_base.c	\
 
 # Test Variables
 
@@ -39,8 +40,6 @@ SRCTEST	 	=	main.c
 NAMETEST 	=	unit_test_malloc
 
 OBJTEST		= 	$(addprefix src/, $(SRCTEST:.c=.o))
-
-TESTLDFLAGS 	= 
 
 # Project variables
 
@@ -56,7 +55,7 @@ else
 CFLAGS	= -W -Wall -Wextra -Werror -fpic
 endif
 
-LDFLAGS		=	-shared
+LDFLAGS	= -shared
 
 NAME	= libmy_malloc.so
 
@@ -82,7 +81,7 @@ endif
 			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Library® Compiled Sucesfully $(WHITE)\n"
 ifeq ($(DEBUG), YES)
 			@make -s $(OBJTEST)
-			@$(CC) $(OBJTEST) -o $(NAMETEST) $(INC) $(TESTLDFLAGS)
+			@$(CC) $(OBJTEST) -o $(NAMETEST) $(INC)
 			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Unit Tests are ready to break your malloc $(WHITE)\n"
 endif
 

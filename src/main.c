@@ -4,8 +4,5 @@
 
 int main()
 {
-    show_alloc_mem();
-    void *ptr = malloc(100);
-    free(ptr);
-    free(ptr);
+
 }

@@ -5,10 +5,32 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Wed Feb  1 14:18:52 2017 bougon_p
+** Last update Wed Feb  1 16:45:35 2017 bougon_p
 */
 
 #include "block.h"
+
+void	check_last_block(t_block block)
+{
+  if (!block->next)
+    {
+      while ((block->size + BLOCK_SIZE) / getpagesize() > 0
+	     && split_block(block, block->size - getpagesize()))
+	{
+	  block->next = NULL;
+	  sbrk(getpagesize() * -1);
+	}
+    }
+  if (block->size + BLOCK_SIZE == (size_t)getpagesize())
+    {
+      block = block->prev;
+      if (block)
+  	block->next = NULL;
+      sbrk(getpagesize() * -1);
+    }
+  if (!block)
+    start_heap = NULL;
+}
 
 void	fusion_right(t_block to_fusion)
 {
@@ -20,12 +42,12 @@ void	fusion_right(t_block to_fusion)
   //  write(1, "end fusion right\n", 17);
 }
 
-void	fusion_left(t_block to_fusion)
+void	fusion_left(t_block *to_fusion)
 {
   //  write(1, "deb fusion left\n", 16);
-  to_fusion = to_fusion->prev;
-  if (to_fusion && to_fusion->next && to_fusion->next->free)
-    fusion_right(to_fusion);
+  (*to_fusion) = (*to_fusion)->prev;
+  if ((*to_fusion) && (*to_fusion)->next && (*to_fusion)->next->free)
+    fusion_right(*to_fusion);
   //  write(1, "end fusion left\n", 16);
 }
 
@@ -34,7 +56,7 @@ void		_free(void *ptr)
 {
   t_block	block;
 
-  if (!IS_ON_HEAP(ptr))
+  if (start_heap == NULL || !IS_ON_HEAP(ptr))
     return;
   block = (t_block)((char *)ptr - BLOCK_SIZE);
   if (block->addr != ptr)
@@ -43,7 +65,8 @@ void		_free(void *ptr)
   if (block->next && block->next->free)
     fusion_right(block);
   //if (block->prev && block->prev->free)
-    //    fusion_left(block);
+  //    fusion_left(block);
+  //check_last_block(block);
 }
 
 void		free(void *ptr)
