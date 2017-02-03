@@ -30,14 +30,14 @@ void		*_malloc(size_t size)
     }
   else
     {
-      last_block = start_heap;
-      block = find_block(&last_block, size);
-      if (block)
-	split_block(block, size);
-      else if ((block = add_heap(last_block, size)) == NULL)
-	return (NULL);
-      split_block(block, size);
-      block->free = 0;
+        last_block = start_heap;
+        block = find_block(&last_block, size);
+        if (block)
+            split_block(block, size);
+        else if ((block = add_heap(last_block, size)) == NULL)
+            return (NULL);
+        split_block(block, size);
+        block->free = 0;
     }
   return (block->c);
 }

@@ -29,7 +29,14 @@ t_block		add_heap(t_block last_block, size_t size)
   b->prev = last_block;
   b->addr = b->c;
   if (last_block)
-    last_block->next = b;
+  {
+      last_block->next = b;
+      if (last_block->free == 1)
+      {
+          fusion_right(last_block);
+          return (last_block);
+      }
+  }
   return (b);
 }
 

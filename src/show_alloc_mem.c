@@ -30,7 +30,7 @@ void		show_alloc_mem()
               write(1, "0x", 2);
               my_putnbr_base_l((unsigned long)tmp, "0123456789ABCDEF");
               write(1, " - 0x", 5);
-              my_putnbr_base_l((unsigned long)(tmp + tmp->size),
+              my_putnbr_base_l((unsigned long)((char *)tmp + tmp->size),
                                "0123456789ABCDEF");
               write(1, " : ", 3);
               my_put_nbr(tmp->size);

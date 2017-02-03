@@ -29,6 +29,9 @@ void	check_last_block(t_block block)
 
 void	fusion_right(t_block to_fusion)
 {
+    if (!to_fusion || !to_fusion->next
+        || to_fusion->next->free != 1)
+        return;
   //  write(1, "deb fusion right\n", 17);
   if (to_fusion->next->next)
     to_fusion->next->next->prev = to_fusion;
