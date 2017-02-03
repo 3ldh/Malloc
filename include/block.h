@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 19:55:54 2017 bougon_p
-** Last update Wed Feb  1 16:38:03 2017 bougon_p
+** Last update Thu Feb  2 22:56:10 2017 bougon_p
 */
 
 #ifndef BLOCK_H_
@@ -30,6 +30,7 @@
 # endif
 
 # define GET_BREAK sbrk(0)
+# define align(size) ((size - 1) / MINIMAL_SIZE * MINIMAL_SIZE + MINIMAL_SIZE);
 
 typedef struct s_block *t_block;
 

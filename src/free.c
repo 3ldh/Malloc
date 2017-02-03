@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Wed Feb  1 16:45:35 2017 bougon_p
+** Last update Thu Feb  2 22:55:43 2017 bougon_p
 */
 
 #include "block.h"
@@ -13,23 +13,18 @@
 void	check_last_block(t_block block)
 {
   if (!block->next)
-    {
-      while ((block->size + BLOCK_SIZE) / getpagesize() > 0
-	     && split_block(block, block->size - getpagesize()))
-	{
-	  block->next = NULL;
-	  sbrk(getpagesize() * -1);
-	}
-    }
-  if (block->size + BLOCK_SIZE == (size_t)getpagesize())
-    {
-      block = block->prev;
-      if (block)
-  	block->next = NULL;
-      sbrk(getpagesize() * -1);
-    }
-  if (!block)
-    start_heap = NULL;
+  {
+      while ((block->size + BLOCK_SIZE) / getpagesize() > 0)
+      {
+          if (split_block(block, block->size - getpagesize()))
+              block->next = NULL;
+          else if (block->prev)
+              block->prev->next = NULL;
+          else
+              start_heap = NULL;
+          sbrk(getpagesize() * -1);
+      }
+  }
 }
 
 void	fusion_right(t_block to_fusion)
@@ -64,8 +59,8 @@ void		_free(void *ptr)
   block->free = 1;
   if (block->next && block->next->free)
     fusion_right(block);
-  //if (block->prev && block->prev->free)
-  //    fusion_left(block);
+  /* if (block->prev && block->prev->free) */
+  /*   fusion_left(&block); */
   //check_last_block(block);
 }
 
@@ -73,7 +68,7 @@ void		free(void *ptr)
 {
   //write(1, "deb free\n", 9);
   pthread_mutex_lock(&mutex);
-  //  (void)ptr;
+  (void)ptr;
   _free(ptr);
   pthread_mutex_unlock(&mutex);
   //  write(1, "end free\n", 9);

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Wed Feb  1 16:40:45 2017 bougon_p
+** Last update Thu Feb  2 22:54:21 2017 bougon_p
 */
 
 #include <string.h>
@@ -15,38 +15,47 @@
 /*
 ** Try right fusion to add allocated space to ptr
 */
-bool		fusion_realloc(t_block block, size_t size)
+bool fusion_realloc(t_block block, size_t size)
 {
-  //  write(1, "deb fusion realloc\n", 19);
+    //  write(1, "deb fusion realloc\n", 19);
   if (block->next && block->next->free == 1
-        && block->size + block->next->size +
-           BLOCK_SIZE > size)
+      && block->size + block->next->size +
+      BLOCK_SIZE > size)
     {
-        fusion_right(block);
-        if (block->size > size)
-            split_block(block, size);
-        return (true);
+      fusion_right(block);
+      if (block->size > size)
+	split_block(block, size);
+      return (true);
     }
   return (false);
   //  write(1, "end fusion realloc\n", 19);
 }
 
 //realloc ...
-void		*realloc(void *ptr, size_t size)
+void *realloc(void *ptr, size_t size)
 {
-  t_block	block;
-  void		*new_ptr;
+  t_block block;
+  void *new_ptr;
 
-  //  write(1, "deb realloc\n", 12);
+  //write(1, "deb realloc\n", 12);
+  if (ptr && size == 0)
+    return (free(ptr), ptr);
   if (!ptr)
     return (malloc(size));
   if (start_heap == NULL || !IS_ON_HEAP(ptr))
     return (ptr);
   block = (t_block)((char*)ptr - BLOCK_SIZE);
-  if (block->addr != ptr) {
-    write(1, "FUCK HERE\n", 10);
-    return (ptr);
-  }
+  if (block->addr != ptr)
+    {
+      write(1, "FUCK HERE\n", 10);
+      return (ptr);
+    }
+  block = (t_block)((char *)ptr - BLOCK_SIZE);
+  if (block->addr != ptr)
+    {
+      write(1, "FUCK HERE\n", 10);
+      return (ptr);
+    }
   size = ((size - 1) / MINIMAL_SIZE * MINIMAL_SIZE + MINIMAL_SIZE);
   if (block->size < size)
     {
@@ -58,13 +67,12 @@ void		*realloc(void *ptr, size_t size)
       split_block(block, size);
       return (ptr);
     }
-  else {
+  else
     return (ptr);
-  }
   if (!(new_ptr = malloc(size)))
     return (NULL);
   memcpy(new_ptr, ptr, block->size);
   free(ptr);
-  //  write(1, "end realloc\n", 12);
+  //   write(1, "end realloc\n", 12);
   return (new_ptr);
 }

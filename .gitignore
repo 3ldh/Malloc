@@ -117,3 +117,5 @@ src/malloc_utilities.o
 src/realloc.o
 src/show_alloc_mem.o
 unit_test_malloc
+
+reverse_me_to*
