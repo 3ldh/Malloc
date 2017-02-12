@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Thu Jan 26 12:52:43 2017 Sauvau Mathieu
-** Last update Thu Feb  2 22:54:31 2017 bougon_p
+** Last update Sun Feb 12 15:46:17 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -19,7 +19,6 @@ t_block		add_heap(t_block last_block, size_t size)
 {
   t_block	b;
 
-  //  write(1, "deb add heap\n", 13);
   b = sbrk(0);
   if (sbrk(BLOCK_SIZE + align_pagesize(size)) == (void*)-1)
     return (NULL);

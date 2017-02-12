@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Wed Jan 25 20:56:18 2017 bougon_p
-## Last update Wed Feb  1 15:57:46 2017 bougon_p
+## Last update Sun Feb 12 20:19:21 2017 bougon_p
 ##
 
 DEBUG	= NO
@@ -32,14 +32,6 @@ SRC	= 	malloc.c		\
 		free.c			\
 		my_put_nbr.c		\
 		my_putnbr_base.c	\
-
-# Test Variables
-
-SRCTEST	 	=	main.c
-
-NAMETEST 	=	unit_test_malloc
-
-OBJTEST		= 	$(addprefix src/, $(SRCTEST:.c=.o))
 
 # Project variables
 
@@ -79,21 +71,16 @@ endif
 			@echo -e "$(RED)CFLAGS$(WHITE) = $(CFLAGS)"
 			@$(CC) $(OBJ) -o $(NAME) $(INC) $(LDFLAGS)
 			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Library® Compiled Sucesfully $(WHITE)\n"
-ifeq ($(DEBUG), YES)
-			@make -s $(OBJTEST)
-			@$(CC) $(OBJTEST) -o $(NAMETEST) $(INC)
-			@echo -e "$(BLUE) \t \t \n \t ♩♪♫ $(NAME) Unit Tests are ready to break your malloc $(WHITE)\n"
-endif
 
 all:
 			@make -s $(NAME)
 
 clean:
-			@$(RM) $(OBJ) $(OBJTEST)
+			@$(RM) $(OBJ)
 			@echo -e "[ $(RED)OK$(WHITE) ] clean sucessfull"
 
 fclean: 		clean
-			@$(RM) $(NAME) $(NAMETEST)
+			@$(RM) $(NAME)
 			@echo -e "[ $(RED)OK$(WHITE) ] fclean succesfull"
 
 re:			fclean all
