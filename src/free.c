@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Thu Feb  2 22:55:43 2017 bougon_p
+** Last update Thu Feb  9 16:59:09 2017 bougon_p
 */
 
 #include "block.h"
@@ -64,7 +64,7 @@ void		_free(void *ptr)
     fusion_right(block);
   /* if (block->prev && block->prev->free) */
   /*   fusion_left(&block); */
-  //check_last_block(block);
+  check_last_block(block);
 }
 
 void		free(void *ptr)
