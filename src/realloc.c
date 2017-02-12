@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:37 2017 bougon_p
-** Last update Sun Feb 12 20:22:24 2017 bougon_p
+** Last update Sun Feb 12 20:31:03 2017 bougon_p
 */
 
 #include <string.h>
@@ -51,7 +51,9 @@ void		*_realloc(void *ptr, size_t size, t_block block, void *new_ptr)
   return (new_ptr);
 }
 
-//realloc ...
+/*
+**realloc ...
+*/
 void		*realloc(void *ptr, size_t size)
 {
   t_block	block;

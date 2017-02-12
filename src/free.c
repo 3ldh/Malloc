@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:16:51 2017 bougon_p
-** Last update Sun Feb 12 20:17:41 2017 bougon_p
+** Last update Sun Feb 12 20:29:11 2017 bougon_p
 */
 
 #include "block.h"
@@ -31,7 +31,7 @@ void	fusion_right(t_block to_fusion)
 {
     if (!to_fusion || !to_fusion->next
         || to_fusion->next->free != 1)
-        return;
+        return ;
   if (to_fusion->next->next)
     to_fusion->next->next->prev = to_fusion;
   to_fusion->size += to_fusion->next->size + BLOCK_SIZE;
@@ -45,16 +45,18 @@ void	fusion_left(t_block *to_fusion)
     fusion_right(*to_fusion);
 }
 
-//Just leave 42 Bytes for the sake of the world !
+/*
+** Just leave 42 Bytes for the sake of the world !
+*/
 void		_free(void *ptr)
 {
   t_block	block;
 
   if (start_heap == NULL || !IS_ON_HEAP(ptr))
-    return;
+    return ;
   block = (t_block)((char *)ptr - BLOCK_SIZE);
   if (block->addr != ptr)
-    return;
+    return ;
   block->free = 1;
   if (block->next && block->next->free)
     fusion_right(block);

@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:15:11 2017 bougon_p
-** Last update Sun Feb 12 15:47:24 2017 Sauvau Mathieu
+** Last update Sun Feb 12 20:30:43 2017 bougon_p
 */
 
 #include "block.h"
@@ -13,7 +13,9 @@
 void		*start_heap = NULL;
 pthread_mutex_t	mutex;
 
-// Malloc ...
+/*
+** Malloc ...
+*/
 void		*_malloc(size_t size)
 {
   t_block	block;
