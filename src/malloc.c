@@ -5,7 +5,7 @@
 ** Login   <bougon_p@epitech.net>
 **
 ** Started on  Wed Jan 25 21:15:11 2017 bougon_p
-** Last update Thu Feb  2 22:54:46 2017 bougon_p
+** Last update Sun Feb 12 15:47:24 2017 Sauvau Mathieu
 */
 
 #include "block.h"
@@ -19,25 +19,24 @@ void		*_malloc(size_t size)
   t_block	block;
   t_block	last_block;
 
-  size = align(size);
   if (!start_heap)
     {
       if ((block = add_heap(NULL, size)) == NULL)
 	return (NULL);
       split_block(block, size);
-      block->free = 0;
       start_heap = block;
+      block->free = 0;
     }
   else
     {
-        last_block = start_heap;
-        block = find_block(&last_block, size);
-        if (block)
-            split_block(block, size);
-        else if ((block = add_heap(last_block, size)) == NULL)
-            return (NULL);
-        split_block(block, size);
-        block->free = 0;
+      last_block = start_heap;
+      block = find_block(&last_block, size);
+      if (block)
+	split_block(block, size);
+      else if ((block = add_heap(last_block, size)) == NULL)
+	return (NULL);
+      split_block(block, size);
+      block->free = 0;
     }
   return (block->c);
 }
@@ -46,10 +45,11 @@ void		*malloc(size_t size)
 {
   void		*ptr;
 
-  //  write(1, "deb malloc\n", 11);
   pthread_mutex_lock(&mutex);
+  if ((int)size <= 0)
+    return (NULL);
+  size = align(size);
   ptr = _malloc(size);
   pthread_mutex_unlock(&mutex);
-  //  write(1, "end malloc\n", 11);
   return (ptr);
 }
